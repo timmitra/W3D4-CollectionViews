@@ -1,0 +1,132 @@
+1. New Single View App
+
+2. Add CollectionView object
+
+3. show collectionViewFlowLayout object
+
+4. Add reuse identifier to the Cell
+
+5. add delegation to the Class extension
+
+<UICollectionViewDataSource, UICollectionViewDelegate>
+
+6. Add delegate methods (and connect delegate & datasource)
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
+                  cellForItemAtIndexPath:(NSIndexPath *)indexPath
+                  
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+
+7. Show Exception Breakpoint Obj-c
+
+8. show collectionView object setting
+
+9. minimum spacing
+
+10. section insets
+
+11. show scroll direction
+
+12. collectionView cell is empty canvas - need to customize
+
+13. add collectionView Cell class
+
+14. Control Drag from the Cell in MainStory board to custom class header.
+
+15. change the generic UICollectionViewCell to our cell. (import Cell Class)
+
+16. Add some random data
+
+NSArray *stuff = @[@"Apple", @"Banana", @"Grape", @"Orange", @"Cherry"];
+int index = arc4random() % 5;
+
+cell.myLabel.text = stuff[index];
+
+or 
+
+cell.myLabel.text = [NSString stringWithFormat:@"{%ld,%ld}", (long)indexPath.row, (long)indexPath.section];
+
+17. add selection
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+
+18. NSLog the selected cell
+
+NSLog(@"{%ld,%ld}", (long)indexPath.row, (long)indexPath.section]);
+
+highlighted - while touching.
+
+19. add didSelectItemAtIndexPath with handle to cellForItemAtIndexPath (sets a BOOL)
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+  
+  NSLog(@"{%ld,%ld}", (long)indexPath.row, (long)indexPath.section);
+  
+  UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+  
+  cell.contentView.backgroundColor = [UIColor redColor];
+  
+}
+
+run
+
+20. add didDeselectItemAtIndexPath & clearcolor 
+
+21 could add didHighlightAtIndexPath
+
+22. adds to .contentView as well as backgroundView and selectedBackgroundView properties
+(contentView is on top, and has it;s own backgroundColor)
+
+23. in Custom Cell get initWithCoder from snippets
+
+ PART 2 
+ 
+ ------------
+
+24 add number of sections in collectionview
+
+25. Layout controls the size of the cells
+
+26. add UICollectionViewDelegateFlowLayout
+
+27 implement sizeForItemAtIndexPath (this is before the cell is actually created)
+
+28 ramp down the priority (the width isn't that important)
+
+29. Supplementary reusable view (Header or Footer)
+
+PART 3
+
+-------------
+
+30 collection reusable view. or better check Accesory on the collection views.
+
+31. color the header to see it.
+
+32. drag a label on.
+
+33. Add UICollectionReuseableView subclass for the the header
+
+34. set the class in Stroyboard.
+
+35. control drag and make an outlet
+
+36. make a resuseidentifier "header"
+
+37. add delegate method viewForSupplementaryElementOfKind
+
+38. use the collectionview dequeueReusableSupplementaryViewOfKind
+for NSString use UICollectionElementKindSectionHeader
+
+39. accessed by header.headerTitle.text
+
+40. Add did select row at indexPath
+
+41. also if you are doing header & footer might want to check for if (kind == UICollectionElementKindSectionHeader ) beofre dequeuig
+
+
+
+
+
+
+
