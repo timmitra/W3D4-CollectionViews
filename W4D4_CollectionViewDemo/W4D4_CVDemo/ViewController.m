@@ -11,7 +11,7 @@
 #import "HeaderView.h"
 
 @interface ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
-  NSArray *sectionOne, *sectionTwo, *sectionThree;
+  NSArray *sectionOne, *sectionTwo, *sectionThree, *sectionTitles;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *imegs;
 
@@ -26,11 +26,12 @@
   sectionOne = @[@"Apple", @"Banana", @"Grape", @"Orange", @"Cherry"];
   sectionTwo = @[@"Red", @"Yellow", @"green", @"Blue", @"Purple", @"Brown", @"Chartreuse"];\
   sectionThree = @[@"iPad Air", @"iPod", @"iPhone 6", @"iPad Air 2", @"iPhone 6 Plus", @"iPad Mini"];
+  sectionTitles = @[@"Fruits", @"Colours",@"iOS Devices"];
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
   
-  return 3;
+  return sectionTitles.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -38,7 +39,7 @@
   if (indexPath.section == 2) {
     return CGSizeMake(125.f, 173.f);
   } else {
-    return CGSizeMake(107.f, 173.f);
+    return CGSizeMake(106.f, 173.f);
   }
 }
 
@@ -47,25 +48,7 @@
   // could have different headers
   HeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header" forIndexPath:indexPath];
   
-  header.headerLabel.text = @"Section Title";
-  
-  NSString *myString;
-  switch (indexPath.section) {
-    case 0:
-      myString = @"Fruits";
-      break;
-    case 1:
-      myString = @"Colours";
-      break;
-    case 2:
-      myString = @"iOS Devices";
-      break;
-      
-    default:
-      break;
-  }
-  header.headerLabel.text = myString;
-
+  header.headerLabel.text = sectionTitles[indexPath.section];
   
   return  header;
 }
